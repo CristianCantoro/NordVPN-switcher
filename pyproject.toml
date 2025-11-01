@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nordvpn-switcher"
+version = "0.3.0"  # keep aligned with upstream; bump if you publish your fork
+description = "Rotate between different NordVPN servers with ease (Linux & Windows)."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Cristian Cantoro", email = "cristiancantoro@gmail.com" },
+  { name = "Kristof Boghe" }
+]
+keywords = ["vpn", "nordvpn", "rotation", "scraping", "automation"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Topic :: Internet",
+  "Intended Audience :: Developers"
+]
+
+# Inferred runtime deps (see notes below)
+dependencies = [
+  "requests>=2.25.0",
+  "psutil>=5.7.0",
+  "fake-useragent>=1.5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/CristianCantoro/NordVPN-switcher"
+Source = "https://github.com/CristianCantoro/NordVPN-switcher"
+Upstream = "https://github.com/kboghe/NordVPN-switcher"
+Changelog = "https://pypi.org/project/nordvpn-switcher/#history"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+# Both the upstream and your fork expose a 'nordvpn_switcher' package,
+# plus (historically) a top-level helper module.
+# This will include them automatically if present.
+exclude = ["tests*", "docs*", "examples*", "example*"]
+
+[tool.setuptools.package-data]
+# If the project writes/reads ancillary data files later, add patterns here.
+nordvpn_switcher = ["py.typed"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+select = ["E", "F", "W", "I"]
+
+[tool.mypy]
+python_version = "3.8"
+ignore_missing_imports = true
