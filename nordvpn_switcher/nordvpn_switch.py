@@ -80,7 +80,7 @@ def get_ip():
     request_currentip = urllib.request.Request(url=website_pick, headers=headers)
     ip = urllib.request.urlopen(request_currentip).read().decode('utf-8')
     if website_pick == 'http://ip4only.me/api/':
-        ip = re.search("IPv4,(.*?),", ip).group(1)
+        ip = re.search(r"IPv4,(.*?),", ip).group(1)
     return ip
 
 def get_nordvpn_servers():
@@ -345,11 +345,11 @@ def initialize_VPN(stored_settings=0,save=0,area_input=None,skip_settings=0):
             #3.1 if asked for random sample, pull a sample.#
             if "random" in settings_servers:
                 #determine sample size#
-                samplesize = int(re.sub("[^0-9]", "", settings_servers).strip())
+                samplesize = int(re.sub(r"[^0-9]", "", settings_servers).strip())
                 #3.1.1 if asked for random regions within country (e.g. random regions from United States,Australia,...)#
                 if "regions" in settings_servers:
                     try:
-                        sample_countries = country_dict[re.sub("random", "", settings_servers).rstrip('0123456789.- ').lower().strip()]
+                        sample_countries = country_dict[re.sub(r"random", "", settings_servers).rstrip('0123456789.- ').lower().strip()]
                         input_needed = 0
                     except:
                         input("\n\nThere are no specific regions available in this country, please try again.\nPress enter to continue.\n")
