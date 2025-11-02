@@ -43,7 +43,14 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
+include = ["nordvpn_switcher*"]
 exclude = ["tests*", "docs*", "examples*", "example*"]
+
+[tool.setuptools.package-data]
+# Ship the text files inside the package
+"nordvpn_switcher" = [
+  "NordVPN_options/*.txt",
+]
 
 # ---- Dev tooling (optional but handy) ----
 [tool.pytest.ini_options]
