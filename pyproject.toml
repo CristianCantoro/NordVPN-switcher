@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "Apache-2.0" }
 authors = [
-  { name = "Cristian Cantoro", email = "cristiancantoro@gmail.com" },
+  { name = "Cristian Cantoro", email = "cristian@balist.es" },
   { name = "Kristof Boghe" }
 ]
 keywords = ["vpn", "nordvpn", "rotation", "scraping", "automation"]
